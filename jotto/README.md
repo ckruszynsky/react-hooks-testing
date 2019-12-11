@@ -34,3 +34,5 @@ This is an example application that demonstrates testing components in React.
     * Button not displayed
     * Title is displayed
     * Message is displayed with congrats message. 
+
+* API Server serves random word
