@@ -3,7 +3,7 @@ import Congrats from './Congrats';
 import Enzyme, {shallow} from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import {findByTestAttr} from '../test/testUtils';
-import PropTypes from 'prop-types';
+import PropTypes, {checkPropTypes} from 'prop-types';
 
 Enzyme.configure({
   adapter: new EnzymeAdapter()
@@ -48,8 +48,17 @@ test('renders non-empty congrats message when success prop is true', () => {
   const wrapper = setup({success: true});
 
   //Act
-  const message = findByTestAttr(wrapper, 'congrats-message');  
+  const message = findByTestAttr(wrapper, 'congrats-message');
 
   //Assert
   expect(message.text().length).not.toBe(0);
+});
+
+test('does not throw warning with expected props', () => {
+  //Arrange
+  const expectedProps = {success: false};
+  //Act
+  const propError = checkPropTypes(Congrats.PropTypes, expectedProps, 'prop', Congrats.name);
+  //Assert
+  expect(propError).toBeUndefined();
 });
