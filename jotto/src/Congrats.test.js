@@ -9,6 +9,7 @@ Enzyme.configure({
   adapter: new EnzymeAdapter()
 });
 
+const defaultProps = { success : false};
 
 /**
  *Factory function to create a ShallowWrapper for the Congrats component
@@ -17,12 +18,13 @@ Enzyme.configure({
  * @returns {ShallowWrapper}
  */
 const setup = (props = {}) => {
-  return shallow(<Congrats {...props} />);
+  const setupProps = {...defaultProps, ...props};
+  return shallow(<Congrats {...setupProps} />);
 }
 
 test('renders without error', () => {
   //Arrange
-  const wrapper = setup({success: false});
+  const wrapper = setup();
 
   //Act
   const component = findByTestAttr(wrapper, 'component-congrats');
@@ -33,7 +35,7 @@ test('renders without error', () => {
 
 test('renders no text when `success` prop is false', () => {
   //Arrange
-  const wrapper = setup({ success: false });
+  const wrapper = setup();
 
   //Act
   const component = findByTestAttr(wrapper, 'component-congrats');
@@ -59,6 +61,6 @@ test('does not throw warning with expected props', () => {
   const expectedProps = { success: false};
 
   //Act
-  checkProps(Congrats, expectedProps);
+  checkProps(Congrats, expectedProps); 
 });
 
