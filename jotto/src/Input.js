@@ -12,6 +12,7 @@ export const Input = ({secretWord}) => {
                     className="mb-2 mx-sm-3"
                     type="text"
                     placeholder="Enter your guess"
+                    onChange={(event) => setCurrentGuess(event.target.value)}
                 />
                 <button
                     data-test="submit-button"
