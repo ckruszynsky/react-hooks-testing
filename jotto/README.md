@@ -62,3 +62,37 @@ This is an example application that demonstrates testing components in React.
       * Or you can use a pattern to embed state into context (custom hook)
    * You can have multiple context, or in a larger app you can combine all of the context into a single provider, and use the useReducer hook to determine what context needs to be updated. 
 
+# Mocks 
+* Fake function that runs instead of a real function
+  * can run alternate code, or just as a placeholder
+
+* Jest replaces real function with a mock
+* Can assert on mocks the following : 
+  * how many times mock ran during tests
+  * with what arguments
+
+* Serve 3 purposes : 
+    * prevent the real function from running 
+        * prevent side-effects like network calls
+    * spy on function to see when it is called. 
+    * Provide return values
+        * return values can setup test conditions. 
+
+# Replacement functions
+ * when the mock runs we will return particular values that we can control that get returned when that function is called. 
+ 
+ # Jest Mocks testing
+ * Reset properties on modules to replace functions with mocks
+ * This means no destructuring on imports in non-test code. Mocks won't work
+     ex: 
+     ```
+      import React from "react" 
+
+        //mocking useContext will work
+      const language = React.useContext(LanguageContext)
+
+      ```
+      ```
+       import {useContext} from 'react';
+       const lang = useContext(langContext); //mocks won't work
+     ```
