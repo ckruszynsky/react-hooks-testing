@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                    
+                        <h1 class="navbar-item">Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#getLetterMatchCount">getLetterMatchCount</a></li><li><a href="global.html#setup">setup</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Title</p>
+                        <h1>Home</h1>
+                    </header>
+                    
+                    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>Jotto - word guessing game</h1>
+<p>This is an example application that demonstrates testing components in React.</p>
+<h2>Components</h2>
+<ul>
+<li>App
+<ul>
+<li>Title, contains children components</li>
+</ul>
+</li>
+<li>Input
+<ul>
+<li>Input box</li>
+<li>Submit button</li>
+</ul>
+</li>
+<li>Guessed Words
+<ul>
+<li>Table containing words guessed</li>
+</ul>
+</li>
+<li>Message
+<ul>
+<li>Displays messages in the application</li>
+</ul>
+</li>
+</ul>
+<h2>Workflow</h2>
+<ul>
+<li>
+<p>Initial loading of the application</p>
+<ul>
+<li>No guessed words will display, instead the instructions will be displayed.</li>
+<li>Title will be displayed</li>
+<li>Input box will be displayed</li>
+<li>Button will be displayed</li>
+</ul>
+</li>
+<li>
+<p>Some guesses have been made, but correct word hasn't been guessed</p>
+<ul>
+<li>Guessed words table is displayed with guessed tries</li>
+<li>The table will have a column for guesses, and a column for matching letter count</li>
+<li>Instructions are not displayed</li>
+<li>Title is displayed</li>
+<li>Input box displayed</li>
+<li>Button displayed</li>
+</ul>
+</li>
+<li>
+<p>Correct Word is guessed</p>
+<ul>
+<li>Guessed words table is displayed with guessed tries</li>
+<li>Instructions are not displayed</li>
+<li>Input not displayed</li>
+<li>Button not displayed</li>
+<li>Title is displayed</li>
+<li>Message is displayed with congrats message.</li>
+</ul>
+</li>
+<li>
+<p>API Server serves random word</p>
+</li>
+</ul>
+<h1>Hooks</h1>
+<ul>
+<li>
+<p>Allows state and lifecycle events in functional components</p>
+<ul>
+<li>No need for complexity for class (or this)</li>
+</ul>
+</li>
+<li>
+<p>Easier code re-use among components</p>
+<ul>
+<li>Can mix and match logic among components</li>
+<li>Ex:
+Component A &amp; Component B tracks mouse and changes color based on mouse position
+With Hooks, both A and B can reuse logic for the mouse tracking</li>
+</ul>
+</li>
+<li>
+<p>useEffect hook is used to handle lifecycle events in your component.</p>
+</li>
+</ul>
+<h1>Context</h1>
+<ul>
+<li>
+<p>Context is used for</p>
+<ul>
+<li>Global Settings (language, visual themes)</li>
+<li>Deeply nested components thst need access to a value but ancestors don't need access to that prop. Avoids prop drilling; however, should try to composition when possible not to over pollute the global context.</li>
+</ul>
+</li>
+<li>
+<p>Using context</p>
+<ul>
+<li>Components that use a context, need to be wrapped in a Provider</li>
+<li>The context value is passed to the provider as a prop</li>
+<li>When context changes the provider will update the children
+<ul>
+<li>Value can be local state for the parent component</li>
+<li>Or you can use a pattern to embed state into context (custom hook)</li>
+</ul>
+</li>
+<li>You can have multiple context, or in a larger app you can combine all of the context into a single provider, and use the useReducer hook to determine what context needs to be updated.</li>
+</ul>
+</li>
+</ul>
+<h1>Mocks</h1>
+<ul>
+<li>
+<p>Fake function that runs instead of a real function</p>
+<ul>
+<li>can run alternate code, or just as a placeholder</li>
+</ul>
+</li>
+<li>
+<p>Jest replaces real function with a mock</p>
+</li>
+<li>
+<p>Can assert on mocks the following :</p>
+<ul>
+<li>how many times mock ran during tests</li>
+<li>with what arguments</li>
+</ul>
+</li>
+<li>
+<p>Serve 3 purposes :</p>
+<ul>
+<li>prevent the real function from running
+<ul>
+<li>prevent side-effects like network calls</li>
+</ul>
+</li>
+<li>spy on function to see when it is called.</li>
+<li>Provide return values
+<ul>
+<li>return values can setup test conditions.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1>Replacement functions</h1>
+<ul>
+<li>when the mock runs we will return particular values that we can control that get returned when that function is called.</li>
+</ul>
+<h1>Jest Mocks testing</h1>
+<ul>
+<li>Reset properties on modules to replace functions with mocks</li>
+<li>This means no destructuring on imports in non-test code. Mocks won't work
+ex:<pre class="prettyprint source"><code> import React from &quot;react&quot; 
+
+   //mocking useContext will work
+ const language = React.useContext(LanguageContext)
+
+</code></pre>
+<pre class="prettyprint source"><code> import {useContext} from 'react';
+ const lang = useContext(langContext); //mocks won't work
+</code></pre>
+</li>
+</ul></article>
+    </section>
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Fri Dec 13 2019 14:10:58 GMT-0600 (Central Standard Time)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+    </div>
+</footer>
+
+
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

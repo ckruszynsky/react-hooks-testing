@@ -1,0 +1,30 @@
+{
+    "tags": {
+        "allowUnknownTags": ["category"]
+    },
+    "source": {
+        "include": ["./src"],
+        "includePattern": ".js$",
+        "excludePattern": "(node_modules/|docs)"
+    },
+    "plugins": [
+    ],
+    "opts": {
+        "encoding": "utf8",
+        "destination": "docs/",
+        "readme": "readme.md",
+        "recurse": true,
+        "verbose": true,
+        "template": "node_modules/better-docs/"
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "default": {
+            "staticFiles": {
+              "include": [
+              ]
+            }
+        }
+  }
+}
