@@ -2,61 +2,52 @@ import React from 'react';
 import {findByTestAttr, checkProps} from '../../../test/testUtils';
 import { shallow, mount, render } from 'enzyme';
 import Congrats from './Congrats';
+import languageContext from '../../contexts/languageContext';
 
-
-
-const defaultProps = { success : false};
 
 /**
- *Factory function to create a ShallowWrapper for the Congrats component
- * @function setup
- * @param {object} [props={}] - Component props specific to this setup
- * @returns {ShallowWrapper}
- */
-const setup = (props = {}) => {
-  const setupProps = {...defaultProps, ...props};
-  return shallow(<Congrats {...setupProps} />);
+* Factory function to create a ReactWrapper for the Congrats component.
+* @function setup
+* @param {object} testValues - contextValues specific to this setup.
+* @returns {ReactWrapper}
+*/
+const setup = ({ success, language }) => {
+  language = language || 'en';
+  success = success || false;
+
+  return mount(
+    <languageContext.Provider value={language}>      
+        <Congrats success={success} />      
+    </languageContext.Provider>
+  );
 }
 
+describe('language picker', () => {
+  test('correctly renders congrats string in English by default', () => {
+    const wrapper = setup({ success: true });
+    expect(wrapper.text()).toBe('Congratulations! You guessed the word!');
+  });
+  test('correctly renders congrats string in emoji', () => {
+    const wrapper = setup({ success: true, language: "emoji" });
+    expect(wrapper.text()).toBe('🎯🎉');
+  });
+});
+
 test('renders without error', () => {
-  //Arrange
-  const wrapper = setup();
-
-  //Act
+  const wrapper = setup({});
   const component = findByTestAttr(wrapper, 'component-congrats');
-
-  //Assert
   expect(component.length).toBe(1);
 });
 
-test('renders no text when `success` prop is false', () => {
-  //Arrange
-  const wrapper = setup();
-
-  //Act
+test('renders no text when `success` is false', () => {
+  const wrapper = setup({ success: false });
   const component = findByTestAttr(wrapper, 'component-congrats');
-
-  //Assert
   expect(component.text()).toBe('');
-
 });
 
-test('renders non-empty congrats message when success prop is true', () => {
-  //Arrange
+test('renders non-empty congrats message when `success` is true', () => {
   const wrapper = setup({ success: true });
-
-  //Act
   const message = findByTestAttr(wrapper, 'congrats-message');
-
-  //Assert
   expect(message.text().length).not.toBe(0);
-});
-
-test('does not throw warning with expected props', () => {
-  //Arrange 
-  const expectedProps = { success: false};
-
-  //Act
-  checkProps(Congrats, expectedProps); 
 });
 
