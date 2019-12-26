@@ -36,8 +36,4 @@ export const Input = ({secretWord}) => {
     )
 }
 
-Input.propTypes = {
-    secretWord: PropTypes.string.isRequired
-}
-
 export default Input;

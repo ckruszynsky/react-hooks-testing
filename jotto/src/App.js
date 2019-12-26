@@ -66,6 +66,7 @@ function App() {
       <languageContext.Provider value={state.language}>
         <LanguagePicker setLanguage={setLanguage} />
         <Input secretWord={state.secretWord} />
+        <GuessedWords />
       </languageContext.Provider>
     </div>
   );
