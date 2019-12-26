@@ -58,9 +58,11 @@ function App() {
 
   return (
     <div data-test="component-app" className="container">
-      <div className="row" style={{borderBottom:'1px solid #eee'}}>
+      <div className="row bg-primary mb-3 pt-2" style={{borderBottom:'1px solid #eee'}}>
         <div className="col">
-          <h1>Jotto</h1>
+          <h1 className="text-white">
+            Jotto
+          </h1>
         </div>
       </div>
       <languageContext.Provider value={state.language}>

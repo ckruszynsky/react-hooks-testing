@@ -11,7 +11,7 @@ const LanguagePicker = ({setLanguage}) => {
 
 
     const languageIcons = languages.map(lang =>
-        <div class="col-sm-2" key={lang.code}>
+        <div className="col-sm-2" key={lang.code}>
         <button
             className="btn btn-sm btn-light"
             data-test="language-icon"

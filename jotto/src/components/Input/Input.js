@@ -13,7 +13,7 @@ export const Input = ({secretWord}) => {
     return (
         <form data-test="component-input" style={{marginTop:'40px'}}>
             <div className="form-group">
-                <span className="font-weight-bold" style={{fontSize:'1.5rem'}}>What is your guess?</span>
+                <span className="font-weight-bold" style={{fontSize:'1.5rem'}}>Can you guess the secret word?</span>
                 <input
                     data-test="input-box"
                     className="form-control"
