@@ -1,7 +1,7 @@
 import { shallow, ShallowWrapper } from 'enzyme';
 import React from 'react';
 
-import { checkProps, findByTestAttr } from '../test/testUtils';
+import { checkProps, findByTestAttr } from '../../../test/testUtils';
 import Input from './Input';
 
 const defaultProps = {secretWord: 'foo'}

@@ -3,6 +3,7 @@ import React from 'react';
 
 import {findByTestAttr} from '../test/testUtils';
 import App from './App';
+import {reducer} from './App';
 
 import hookActions from './actions/hookActions';
 
@@ -14,7 +15,6 @@ const mockGetSecretWord = jest.fn();
  * @returns {ReactWrapper}
  */
 const setup = (secretWord = "party") => {
-
     mockGetSecretWord.mockClear();
     hookActions.getSecretWord = mockGetSecretWord;
 
@@ -91,4 +91,29 @@ describe("secretWord is not null", () => {
       expect(spinnerComponent.exists()).toBe(true);
     });
   
+  });
+
+  describe("reducer tests", ()=> {
+    const initialState = {
+      secretWord: 'foo',
+      language: 'en'
+    };
+
+      test('returns correct state object values for setSecretWord', ()=> {        
+        const action = { type: 'setSecretWord', payload: 'bar'};
+        const expectedState = {...initialState, secretWord: 'bar' };
+        const actualState = reducer(initialState, action);
+        expect(actualState).toEqual(expectedState);
+      });
+
+      test('throws error when invalid action type is passed', () => {
+        expect(()=> (reducer({}, {type: 'fake', payload: 'fake'}))).toThrow(/Invalid action type/);        
+      });
+
+      test('returns correct state object for setLangauge action', ()=> {
+        const action = { type: 'setLanguage', payload: 'fr'};
+        const expectedState = {...initialState, language: 'fr'};
+        const actualState = reducer(initialState,action);
+        expect(actualState).toEqual(expectedState);
+      });
   });

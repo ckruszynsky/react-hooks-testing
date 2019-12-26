@@ -11,23 +11,25 @@ export const Input = ({secretWord}) => {
         setCurrentGuess("");
     }
     return (
-        <div data-test="component-input">
-            <form className="form-inline">
+        <form data-test="component-input" style={{marginTop:'40px'}}>
+            <div className="form-group">
+                <span className="font-weight-bold" style={{fontSize:'1.5rem'}}>What is your guess?</span>
                 <input
                     data-test="input-box"
-                    className="mb-2 mx-sm-3"
+                    className="form-control"
                     type="text"
-                    placeholder="Enter your guess"
+                    placeholder="Enter your guess...."
                     onChange={(event) => setCurrentGuess(event.target.value)}
                 />
-                <button
-                    data-test="submit-button"
-                    className="btn btn-primary mb-2"
-                    onClick={(evt)=> onSubmit(evt)}>
-                        Submit
+            </div>
+
+            <button
+                data-test="submit-button"
+                className="btn btn-primary mb-2"
+                onClick={(evt) => onSubmit(evt)}>
+                Submit
                 </button>
-            </form>
-        </div>
+        </form>
     )
 }
 

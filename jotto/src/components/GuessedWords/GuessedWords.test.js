@@ -1,5 +1,5 @@
 import React from 'react';
-import {findByTestAttr, checkProps} from '../test/testUtils';
+import {findByTestAttr, checkProps} from '../../../test/testUtils';
 import GuessedWords from './GuessedWords';
 import {shallow, mount, render} from 'enzyme';
 
@@ -59,8 +59,7 @@ describe('if there are words guessed', () => {
     });
 
     test('renders guessed words section', () => {   
-        const guessedWordsNode = findByTestAttr(wrapper, 'guessed-words');
-        console.log(guessedWordsNode.debug());
+        const guessedWordsNode = findByTestAttr(wrapper, 'guessed-words');        
         expect(guessedWordsNode.length).toBe(1);
     });
 

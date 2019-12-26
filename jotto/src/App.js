@@ -2,9 +2,12 @@ import './App.css';
 
 import React from 'react';
 import hookActions from './actions/hookActions';
-import Congrats from './Congrats';
-import GuessedWords from './GuessedWords';
-import Input from './Input';
+import Congrats from './components/Congrats';
+import GuessedWords from './components/GuessedWords';
+import Input from './components/Input';
+import languageContext from './contexts/languageContext';
+import LanguagePicker from './components/LanguagePicker';
+
 /**
  * @description reducer to update state, called automatically by dispatch
  * @param {object} state - existing state
@@ -12,29 +15,37 @@ import Input from './Input';
  *                          for example: {type: "setSecretWord", payload: "party"}
  * @returns {object} - new state
  */
-function reducer(state, action) {
+export function reducer(state, action) {
   switch (action.type) {
     case "setSecretWord":
       return {...state, secretWord: action.payload};
+    case "setLanguage":
+      return {...state, language: action.payload};
     default:
       throw new Error(`Invalid action type ${action.type}`);
   }
 }
 
 function App() {
+  const defaultState = {
+    secretWord: null,
+    language: 'en'
+  };
+
   const [state, dispatch] = React.useReducer(
-    reducer
-    , {secretWord: null}
+    reducer,
+    defaultState
   );
 
   const setSecretWord = (secretWord) => dispatch({type: 'setSecretWord', payload: secretWord});
+  const setLanguage = (language) => dispatch({type: 'setLanguage', payload: language});
 
   React.useEffect(() => {
     hookActions.getSecretWord(setSecretWord)
   }, []);
 
 
-  if(!state.secretWord) {
+  if (!state.secretWord) {
     return (
       <div className="container" data-test="spinner">
         <div className="spinner-border" role="status">
@@ -45,11 +56,18 @@ function App() {
     );
   }
 
-  return (    
-        <div data-test="component-app" className="container">
+  return (
+    <div data-test="component-app" className="container">
+      <div className="row" style={{borderBottom:'1px solid #eee'}}>
+        <div className="col">
           <h1>Jotto</h1>
-          <Input secretWord={state.secretWord} />
-        </div>          
+        </div>
+      </div>
+      <languageContext.Provider value={state.language}>
+        <LanguagePicker setLanguage={setLanguage} />
+        <Input secretWord={state.secretWord} />
+      </languageContext.Provider>
+    </div>
   );
 }
 
