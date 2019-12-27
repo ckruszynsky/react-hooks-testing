@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import languageContext from '../../contexts/languageContext';
 import stringsModule from '../../helpers/strings';

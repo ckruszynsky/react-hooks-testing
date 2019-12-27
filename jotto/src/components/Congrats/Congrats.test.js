@@ -3,6 +3,7 @@ import {findByTestAttr, checkProps} from '../../../test/testUtils';
 import { shallow, mount, render } from 'enzyme';
 import Congrats from './Congrats';
 import languageContext from '../../contexts/languageContext';
+import successContext from '../../contexts/successContext';
 
 
 /**
@@ -16,8 +17,10 @@ const setup = ({ success, language }) => {
   success = success || false;
 
   return mount(
-    <languageContext.Provider value={language}>      
-        <Congrats success={success} />      
+    <languageContext.Provider value={language}>  
+    <successContext.SuccessProvider value={[success,jest.fn()]}>
+        <Congrats />      
+      </successContext.SuccessProvider>    
     </languageContext.Provider>
   );
 }

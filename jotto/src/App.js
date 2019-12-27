@@ -6,6 +6,7 @@ import Congrats from './components/Congrats';
 import GuessedWords from './components/GuessedWords';
 import Input from './components/Input';
 import languageContext from './contexts/languageContext';
+import successContext from './contexts/successContext';
 import LanguagePicker from './components/LanguagePicker';
 
 /**
@@ -58,14 +59,17 @@ function App() {
 
   return (
     <div data-test="component-app" className="container">
-      <div className="row bg-primary mb-3 mt-1" style={{borderBottom:'1px solid #eee'}}>
+      <div className="row bg-primary mb-3 mt-1" style={{borderBottom: '1px solid #eee'}}>
         <div className="col">
           <h1 className="text-white">Jotto</h1>
         </div>
       </div>
       <languageContext.Provider value={state.language}>
         <LanguagePicker setLanguage={setLanguage} />
-        <Input secretWord={state.secretWord} />
+        <successContext.SuccessProvider>
+          <Congrats />
+          <Input secretWord={state.secretWord} />
+        </successContext.SuccessProvider>
         <GuessedWords />
       </languageContext.Provider>
     </div>
