@@ -7,7 +7,7 @@ const successContext = React.createContext();
 * @returns {array} successContext value, which is a state of [value, setter].
 *
 */
-const useSuccessContext = () => {
+const getContext = () => {
     const context = React.useContext(successContext);
 
     //check to ensure we are using in a provider. If not 
@@ -35,4 +35,4 @@ const SuccessProvider = (props) => {
     return <successContext.Provider value={value} {...props} />
 }
 
-export default { SuccessProvider, useSuccess};
+export default { SuccessProvider, getContext};
