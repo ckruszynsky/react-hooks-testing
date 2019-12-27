@@ -7,7 +7,7 @@ const successContext = React.createContext();
 * @returns {array} successContext value, which is a state of [value, setter].
 *
 */
-const getContext = () => {
+export const useSuccess = () => {
     const context = React.useContext(successContext);
 
     //check to ensure we are using in a provider. If not 
@@ -24,7 +24,7 @@ const getContext = () => {
 * @param {object} props - props to pass through from declared component
 * @returns {JSX.Element} Provider component
 */
-const SuccessProvider = (props) => {
+export const SuccessProvider = (props) => {
     const [success,setSuccess] = React.useState(false);
 
     //useMemo hook ensures we aren't recalculating the value more than we need to
@@ -35,4 +35,4 @@ const SuccessProvider = (props) => {
     return <successContext.Provider value={value} {...props} />
 }
 
-export default { SuccessProvider, getContext};
+export default { SuccessProvider, useSuccess};
