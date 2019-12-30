@@ -1,5 +1,6 @@
 import React from 'react';
 import languageContext from '../../contexts/languageContext';
+import guessedWordsContext from '../../contexts/guessedWordsContext';
 import stringsModule from '../../helpers/strings';
 
 function buildInstructionsContainer(language) {
@@ -31,9 +32,10 @@ function buildGuessedWordsTable(language,guessedWords) {
     return contents;
 }
 
-const GuessedWords = ({guessedWords}) => {
+const GuessedWords = () => {
+    const [guessedWords] = guessedWordsContext.useGuessedWords();
     const language = React.useContext(languageContext);
-
+    
     let contents = !guessedWords || guessedWords.length === 0 ?
         buildInstructionsContainer(language)
         : buildGuessedWordsTable(language,guessedWords);

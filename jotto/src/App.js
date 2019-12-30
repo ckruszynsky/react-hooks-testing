@@ -7,6 +7,7 @@ import GuessedWords from './components/GuessedWords';
 import Input from './components/Input';
 import languageContext from './contexts/languageContext';
 import successContext from './contexts/successContext';
+import guessedWordsContext from './contexts/guessedWordsContext';
 import LanguagePicker from './components/LanguagePicker';
 
 /**
@@ -66,11 +67,13 @@ function App() {
       </div>
       <languageContext.Provider value={state.language}>
         <LanguagePicker setLanguage={setLanguage} />
+        <guessedWordsContext.GuessedWordsProvider>
         <successContext.SuccessProvider>
           <Congrats />
           <Input secretWord={state.secretWord} />
         </successContext.SuccessProvider>
         <GuessedWords />
+        </guessedWordsContext.GuessedWordsProvider>
       </languageContext.Provider>
     </div>
   );
