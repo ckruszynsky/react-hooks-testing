@@ -4,6 +4,7 @@ import { shallow, mount, render } from 'enzyme';
 import Congrats from './Congrats';
 import languageContext from '../../contexts/languageContext';
 import successContext from '../../contexts/successContext';
+import guessedWordsContext from '../../contexts/guessedWordsContext';
 
 
 /**
@@ -18,9 +19,11 @@ const setup = ({ success, language }) => {
 
   return mount(
     <languageContext.Provider value={language}>  
+    <guessedWordsContext.GuessedWordsProvider>
     <successContext.SuccessProvider value={[success,jest.fn()]}>
         <Congrats />      
       </successContext.SuccessProvider>    
+      </guessedWordsContext.GuessedWordsProvider>
     </languageContext.Provider>
   );
 }
@@ -28,11 +31,13 @@ const setup = ({ success, language }) => {
 describe('language picker', () => {
   test('correctly renders congrats string in English by default', () => {
     const wrapper = setup({ success: true });
-    expect(wrapper.text()).toBe('Congratulations! You guessed the word!');
+    const congratsMessage = findByTestAttr(wrapper,'congrats-message');
+    expect(congratsMessage.text()).toBe('Congratulations! You guessed the word!');
   });
   test('correctly renders congrats string in emoji', () => {
     const wrapper = setup({ success: true, language: "emoji" });
-    expect(wrapper.text()).toBe('🎯🎉');
+    const congratsMessage = findByTestAttr(wrapper,'congrats-message');
+    expect(congratsMessage.text()).toBe('🎯🎉');
   });
 });
 
@@ -52,5 +57,11 @@ test('renders non-empty congrats message when `success` is true', () => {
   const wrapper = setup({ success: true });
   const message = findByTestAttr(wrapper, 'congrats-message');
   expect(message.text().length).not.toBe(0);
+});
+
+test('renders dismiss button when `success` is true', ()=> {
+  const wrapper = setup({success:true});
+  const dismissButton = findByTestAttr(wrapper, 'dismiss-button');
+  expect(dismissButton.length).toBe(1);
 });
 
